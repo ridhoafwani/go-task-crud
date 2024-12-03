@@ -1,7 +1,6 @@
 package handler
 
 import (
-	"errors"
 	"net/http"
 	"strconv"
 
@@ -14,13 +13,13 @@ func (h *TaskHandler) GetAllTasks(c *gin.Context) {
 
 	limit, err := strconv.Atoi(limitStr)
 	if err != nil || limit < 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": errors.New("invalid limit").Error()})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid limit"})
 		return
 	}
 
 	offset, err := strconv.Atoi(offsetStr)
 	if err != nil || offset < 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": errors.New("invalid offset").Error()})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid offset"})
 		return
 	}
 

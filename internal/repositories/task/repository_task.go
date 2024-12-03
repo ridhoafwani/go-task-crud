@@ -14,14 +14,14 @@ type InMemoryTaskRepository struct {
 func NewInMemoryTaskRepository() *InMemoryTaskRepository {
 	return &InMemoryTaskRepository{
 		tasks:  make(map[int]models.Task),
-		nextID: 1,
+		nextID: 0,
 	}
 }
 
 type TaskRepository interface {
 	Create(task models.Task) (models.Task, error)
 	GetAll() ([]models.Task, error)
-	// GetByID(id int) (model.Task, error)
+	GetByID(id int) (models.Task, error)
 	// Update(id int, task model.Task) (model.Task, error)
 	// Delete(id int) error
 }

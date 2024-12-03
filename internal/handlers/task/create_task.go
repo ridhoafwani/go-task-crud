@@ -1,7 +1,6 @@
 package handler
 
 import (
-	"errors"
 	"net/http"
 	models "task-crud/internal/models/task"
 
@@ -12,7 +11,7 @@ func (h *TaskHandler) CreateTask(c *gin.Context) {
 	var req models.CreateTaskRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"error": errors.New("invalid input request").Error(),
+			"error": "invalid input request",
 		})
 		return
 	}
