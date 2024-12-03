@@ -36,4 +36,8 @@ watch:
             fi; \
         fi
 
-.PHONY: all build run test watch
+# Generate the swagger docs
+swag:
+	@swag init -g cmd/main.go
+
+.PHONY: all build run test watch swag
