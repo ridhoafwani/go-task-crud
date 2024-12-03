@@ -10,7 +10,7 @@ type TaskService interface {
 	GetAllTasks(limit, offset int) (models.GetAllTaskResponse, error)
 	GetTaskByID(id int) (models.Task, error)
 	UpdateTask(id int, req models.CreateTaskRequest) (models.Task, error)
-	// DeleteTask(id int) error
+	DeleteTask(id int) error
 }
 
 type Service struct {
