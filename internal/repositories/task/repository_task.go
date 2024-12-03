@@ -20,7 +20,7 @@ func NewInMemoryTaskRepository() *InMemoryTaskRepository {
 
 type TaskRepository interface {
 	Create(task models.Task) (models.Task, error)
-	// GetAll() ([]model.Task, error)
+	GetAll() ([]models.Task, error)
 	// GetByID(id int) (model.Task, error)
 	// Update(id int, task model.Task) (model.Task, error)
 	// Delete(id int) error

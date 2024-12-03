@@ -7,7 +7,7 @@ import (
 
 type TaskService interface {
 	CreateTask(req models.CreateTaskRequest) (models.Task, error)
-	// GetAllTasks(limit, offset int) (models.GetAllTaskResponse, error)
+	GetAllTasks(limit, offset int) (models.GetAllTaskResponse, error)
 	// GetTaskByID(id int) (models.Task, error)
 	// UpdateTask(id int, req models.CreateTaskRequest) (models.Task, error)
 	// DeleteTask(id int) error
