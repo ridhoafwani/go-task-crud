@@ -24,6 +24,6 @@ func (h *TaskHandler) RegisterRoute() {
 	router.POST("/", h.CreateTask)
 	router.GET("/", h.GetAllTasks)
 	router.GET("/:id", h.GetTaskByID)
-	// router.PATCH("/:id", h.UpdateTask)
+	router.PATCH("/:id", h.UpdateTask)
 	// router.DELETE("/:id", h.DeleteTask)
 }

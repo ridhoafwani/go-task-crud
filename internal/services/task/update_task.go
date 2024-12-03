@@ -2,16 +2,16 @@ package services
 
 import models "task-crud/internal/models/task"
 
-func (s *Service) CreateTask(req models.CreateTaskRequest) (models.Task, error) {
+func (s *Service) UpdateTask(id int, req models.CreateTaskRequest) (models.Task, error) {
 	task := models.Task{
 		Title:       req.Title,
 		Description: req.Description,
 	}
 
-	createdTask, err := s.taskRepository.Create(task)
+	updatedTask, err := s.taskRepository.Update(id, task)
 	if err != nil {
 		return models.Task{}, err
 	}
 
-	return createdTask, nil
+	return updatedTask, nil
 }

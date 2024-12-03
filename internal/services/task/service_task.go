@@ -9,16 +9,16 @@ type TaskService interface {
 	CreateTask(req models.CreateTaskRequest) (models.Task, error)
 	GetAllTasks(limit, offset int) (models.GetAllTaskResponse, error)
 	GetTaskByID(id int) (models.Task, error)
-	// UpdateTask(id int, req models.CreateTaskRequest) (models.Task, error)
+	UpdateTask(id int, req models.CreateTaskRequest) (models.Task, error)
 	// DeleteTask(id int) error
 }
 
-type service struct {
+type Service struct {
 	taskRepository repositories.TaskRepository
 }
 
-func NewTaskService(repo repositories.TaskRepository) *service {
-	return &service{
+func NewTaskService(repo repositories.TaskRepository) *Service {
+	return &Service{
 		taskRepository: repo,
 	}
 }
