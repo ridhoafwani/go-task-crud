@@ -177,7 +177,7 @@ paths:
       summary: Get a task by ID
       tags:
       - tasks
-    put:
+    patch:
       consumes:
       - application/json
       description: Update a task by ID

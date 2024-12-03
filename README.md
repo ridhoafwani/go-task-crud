@@ -63,7 +63,7 @@ The following endpoints are available:
 - `GET /api/v1/tasks`: Get all tasks
 - `POST /api/v1/tasks`: Create a new task
 - `GET /api/v1/tasks/{id}`: Get a specific task
-- `PUT /api/v1/tasks/{id}`: Update a specific task
+- `PATCH /api/v1/tasks/{id}`: Update a specific task
 - `DELETE /api/v1/tasks/{id}`: Delete a specific task
 
 For detailed API documentation, visit `http://localhost:3000/swagger/index.html` when the application is running.
