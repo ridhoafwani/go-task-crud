@@ -7,6 +7,16 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @Summary Get a task by ID
+// @Description Get a task by ID
+// @Tags tasks
+// @Accept json
+// @Produce json
+// @Param id path int true "Task ID"
+// @Success 200 {object} models.Task
+// @Failure 400 {object} models.ErrorResponse
+// @Failure 500 {object} models.ErrorResponse
+// @Router /tasks/{id} [get]
 func (h *TaskHandler) GetTaskByID(c *gin.Context) {
 	idStr := c.Param("id")
 	id, err := strconv.Atoi(idStr)
