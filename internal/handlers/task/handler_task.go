@@ -19,7 +19,7 @@ func NewTaskHandler(api *gin.Engine, s services.TaskService) *TaskHandler {
 }
 
 func (h *TaskHandler) RegisterRoute() {
-	router := h.Group("tasks")
+	router := h.Group("api/v1/tasks")
 
 	router.POST("/", h.CreateTask)
 	router.GET("/", h.GetAllTasks)
