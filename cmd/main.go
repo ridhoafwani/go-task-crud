@@ -17,7 +17,6 @@ import (
 // @title Task CRUD API
 // @version 1.0
 // @description This is a simple CRUD API for managing tasks
-// @host localhost:3000
 // @BasePath /api/v1
 
 func main() {
