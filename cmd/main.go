@@ -7,7 +7,9 @@ import (
 
 	_ "task-crud/docs"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
@@ -20,6 +22,10 @@ import (
 
 func main() {
 	r := gin.Default()
+
+	config := cors.DefaultConfig()
+	config.AllowAllOrigins = true
+	r.Use(cors.New(config))
 
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
