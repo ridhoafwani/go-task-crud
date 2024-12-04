@@ -7,7 +7,9 @@ import (
 
 	_ "task-crud/docs"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
@@ -15,11 +17,14 @@ import (
 // @title Task CRUD API
 // @version 1.0
 // @description This is a simple CRUD API for managing tasks
-// @host localhost:3000
 // @BasePath /api/v1
 
 func main() {
 	r := gin.Default()
+
+	config := cors.DefaultConfig()
+	config.AllowAllOrigins = true
+	r.Use(cors.New(config))
 
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
