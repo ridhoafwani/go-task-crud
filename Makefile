@@ -1,4 +1,11 @@
-# Simple Makefile for a Go project
+# Include environment variables from .env file
+include .env
+
+# Export environment variables
+export $(shell sed 's/=.*//' .env)
+
+# Construct POSTGRESQL_URL
+POSTGRESQL_URL := postgres://$(DB_USER):$(DB_PASSWORD)@$(DB_HOST):$(DB_PORT)/$(DB_DATABASE)?sslmode=disable
 
 # Build the application
 all: build test
@@ -35,6 +42,16 @@ watch:
                 exit 1; \
             fi; \
         fi
+
+migrate-create:
+	@ migrate create -ext sql -dir scripts/migrations -seq $(name)
+
+migrate-up:
+	@ echo "Connecting to PostgreSQL at ${POSTGRESQL_URL}"
+	@ migrate -path scripts/migrations -database "${POSTGRESQL_URL}" -verbose up
+
+migrate-down:
+	@ migrate -path scripts/migrations -database "${POSTGRESQL_URL}" -verbose down
 
 # Generate the swagger docs
 swag:
