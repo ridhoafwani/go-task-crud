@@ -1,5 +1,13 @@
 package services
 
-func (s *Service) DeleteTask(id int) error {
-	return s.taskRepository.Delete(id)
+import "context"
+
+func (s *taskService) DeleteTask(ctx context.Context, userID, id int64) error {
+	_, err := s.GetTaskByID(ctx, userID, id)
+	if err != nil {
+		return err
+	}
+
+	// Delete the task
+	return s.taskRepository.Delete(ctx, id)
 }
