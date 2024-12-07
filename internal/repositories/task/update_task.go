@@ -1,19 +1,24 @@
 package repositories
 
 import (
-	"errors"
-	models "task-crud/internal/models/task"
+	"context"
+	"database/sql"
+	"fmt"
+	models "task-crud/internal/models"
+	"task-crud/utils/custom_err"
 )
 
-func (repo *InMemoryTaskRepository) Update(id int, task models.Task) (models.Task, error) {
-	repo.mutex.Lock()
-	defer repo.mutex.Unlock()
+func (repo *taskRepository) Update(ctx context.Context, id int64, task models.Task) (models.Task, error) {
+	query := "UPDATE tasks SET title = $1, description = $2, updated_at = NOW() WHERE id = $3 RETURNING updated_at"
 
-	_, exists := repo.tasks[id]
-	if !exists {
-		return models.Task{}, errors.New("task not found")
+	err := repo.db.QueryRowContext(ctx, query, task.Title, task.Description, id).Scan(&task.UpdatedAt)
+
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return task, custom_err.ErrNotFound
+		}
+		return task, fmt.Errorf("failed to update task: %w", err)
 	}
-	task.ID = id
-	repo.tasks[id] = task
+
 	return task, nil
 }

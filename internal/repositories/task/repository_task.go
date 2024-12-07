@@ -1,27 +1,23 @@
 package repositories
 
 import (
-	"sync"
-	models "task-crud/internal/models/task"
+	"context"
+	"database/sql"
+	models "task-crud/internal/models"
 )
 
-type InMemoryTaskRepository struct {
-	tasks  map[int]models.Task
-	nextID int
-	mutex  sync.RWMutex
+type taskRepository struct {
+	db *sql.DB
 }
 
-func NewInMemoryTaskRepository() *InMemoryTaskRepository {
-	return &InMemoryTaskRepository{
-		tasks:  make(map[int]models.Task),
-		nextID: 0,
-	}
+func NewTaskRepository(db *sql.DB) TaskRepository {
+	return &taskRepository{db: db}
 }
 
 type TaskRepository interface {
-	Create(task models.Task) (models.Task, error)
-	GetAll() ([]models.Task, error)
-	GetByID(id int) (models.Task, error)
-	Update(id int, task models.Task) (models.Task, error)
-	Delete(id int) error
+	Create(ctx context.Context, userID int64, task models.Task) (models.Task, error)
+	GetAll(ctx context.Context, userID int64, limit, offset int) ([]models.Task, error)
+	GetByID(ctx context.Context, id int64) (models.Task, error)
+	Update(ctx context.Context, id int64, task models.Task) (models.Task, error)
+	Delete(ctx context.Context, id int64) error
 }
