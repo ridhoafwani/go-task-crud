@@ -10,9 +10,9 @@ func (repo *taskRepository) Create(ctx context.Context, userID int64, task model
 	query := `
         INSERT INTO tasks (title, description, user_id, created_at, updated_at)
         VALUES ($1, $2, $3, NOW(), NOW()) 
-        RETURNING id, created_at, updated_at`
+        RETURNING id, user_id, created_at, updated_at`
 
-	err := repo.db.QueryRowContext(ctx, query, task.Title, task.Description, userID).Scan(&task.ID, &task.CreatedAt, &task.UpdatedAt)
+	err := repo.db.QueryRowContext(ctx, query, task.Title, task.Description, userID).Scan(&task.ID, &task.UserID, &task.CreatedAt, &task.UpdatedAt)
 
 	if err != nil {
 		return task, fmt.Errorf("failed to create task: %w", err)

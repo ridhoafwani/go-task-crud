@@ -1,11 +1,18 @@
 package main
 
 import (
-	handler "task-crud/internal/handlers/task"
-	repositories "task-crud/internal/repositories/task"
-	services "task-crud/internal/services/task"
+	"task-crud/internal/config"
+	"task-crud/internal/database"
+
+	authHandler "task-crud/internal/handlers/authentication"
+	taskHandler "task-crud/internal/handlers/task"
+
+	authRepository "task-crud/internal/repositories/authentication"
+	taskRepository "task-crud/internal/repositories/task"
 
 	_ "task-crud/docs"
+	authService "task-crud/internal/services/authentication"
+	taskService "task-crud/internal/services/task"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -19,26 +26,41 @@ import (
 // @description This is a simple CRUD API for managing tasks
 // @BasePath /api/v1
 
+// @securityDefinitions.apikey BearerAuth
+// @in header
+// @name Authorization
+
 func main() {
 	r := gin.Default()
 
-	config := cors.DefaultConfig()
-	config.AllowAllOrigins = true
-	r.Use(cors.New(config))
+	config.LoadConfig()
+
+	corsConfig := cors.DefaultConfig()
+	corsConfig.AllowAllOrigins = true
+	r.Use(cors.New(corsConfig))
 
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
 
-	taskRepo := repositories.NewInMemoryTaskRepository()
+	dbService := database.New()
 
-	taskService := services.NewTaskService(taskRepo)
+	// Get the DB connection instance
+	db := dbService.GetDB()
 
-	taskHandler := handler.NewTaskHandler(r, taskService)
+	taskRepo := taskRepository.NewTaskRepository(db)
+	authRepo := authRepository.NewAuthRepository(db)
+
+	taskService := taskService.NewTaskService(taskRepo)
+	authService := authService.NewAuthService(authRepo)
+
+	taskHandler := taskHandler.NewTaskHandler(r, taskService)
+	authHandler := authHandler.NewAuthHandler(r, authService)
 
 	taskHandler.RegisterRoute()
+	authHandler.RegisterRoute()
 
 	// Swagger route
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
-	r.Run(":3000")
+	r.Run(":" + config.AppConfig.Port)
 }
