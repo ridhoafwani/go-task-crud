@@ -1,8 +1,8 @@
 services:
   db:
     image: postgres:latest
-    networks:
-      - my-local-net
+    # networks:
+    #   - my-local-net
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
@@ -28,14 +28,14 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    networks:
-      - my-local-net
+    # networks:
+    #   - my-local-net
     volumes:
       - ./scripts/migrations/:/scripts/migrations/
     command:
       [
         "-path",
-        "/scripts/migrations",
+        "scripts/migrations",
         "-database",
         "postgres://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_DATABASE}?sslmode=disable",
         "-verbose",
@@ -46,8 +46,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    networks:
-      - my-local-net
+    # networks:
+    #   - my-local-net
     environment:
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
@@ -69,8 +69,7 @@ services:
 
 volumes:
   db_data:
-
-networks:
-  my-local-net:
-    name: my-net
-    driver: bridge
+# networks:
+#   my-local-net:
+#     name: my-net
+#     driver: bridge
