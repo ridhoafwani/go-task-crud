@@ -7,7 +7,7 @@ A simple CRUD application built with the [Gin](https://gin-gonic.com/) framework
 ## Live Version
 
 A live version is available for demonstration and testing purposes at:  
-[https://task-crud.ridhoafwani.dev/swagger/index.html](https://task-crud.ridhoafwani.dev/swagger/index.html).
+[https://task-crud.afu.my.id/swagger/index.html](https://task-crud.afu.my.id/swagger/index.html).
 
 **Note:** To use bearer token in swagger you can read here : [Bearer token in Swagger](#bearer-token-in-swagger)
 
