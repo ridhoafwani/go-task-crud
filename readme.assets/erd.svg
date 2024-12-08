@@ -1,0 +1,191 @@
+<svg version="1.1" baseProfile="full" width="522.0" height="530.0" viewbox="0 0 522 530" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events">
+	<desc >#background: #FFFFFF
+	[users|id: BIGSERIAL|email: VARCHAR(250)|username: VARCHAR(250)|password: VARCHAR(500)|created_at: TIMESTAMP|updated_at: TIMESTAMP]
+	[tasks|id: BIGSERIAL|user_id: BIGINT|title: VARCHAR(250)|description: TEXT|created_at: TIMESTAMP|updated_at: TIMESTAMP]
+	[refresh_tokens|id: SERIAL|user_id: BIGINT|refresh_token: TEXT|expired_at: TIMESTAMP|created_at: TIMESTAMP|updated_at: TIMESTAMP]
+	
+	[users] 1 --&gt; * [tasks]
+	[users] 1 --&gt; * [refresh_tokens]</desc>
+	<g stroke-width="1.0" text-align="left" font="12pt Helvetica, Arial, sans-serif" font-size="12pt" font-family="Helvetica" font-weight="normal" font-style="normal">
+		<g font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round" stroke="#33322E">
+			<g stroke="transparent" fill="#FFFFFF">
+				<rect x="0.0" y="0.0" height="530.0" width="522.0" stroke="none"></rect>
+			</g>
+			<g transform="translate(8, 8)" fill="#33322E">
+				<g transform="translate(20, 20)" fill="#33322E" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal">
+					<text x="134.2" y="237.0" stroke="none">1</text>
+					<text x="91.5" y="249.0" stroke="none">*</text>
+					<g stroke-dasharray="6 6">
+						<path d="M126.2 217.0 L106.5 237 L106.5 250.33333333333334 L106.5 250.3 " fill="none"></path>
+					</g>
+					<path d="M101.2 243.7 L106.5 250.3 L111.8 243.7 L106.5 257.0 Z"></path>
+					<text x="321.8" y="237.0" stroke="none">1</text>
+					<text x="367.5" y="249.0" stroke="none">*</text>
+					<g stroke-dasharray="6 6">
+						<path d="M339.8 217.0 L359.5 237 L359.5 250.33333333333334 L359.5 250.3 " fill="none"></path>
+					</g>
+					<path d="M354.2 243.7 L359.5 250.3 L364.8 243.7 L359.5 257.0 Z"></path>
+					<g data-name="users">
+						<g fill="#eee8d5" stroke="#33322E" data-name="users">
+							<rect x="119.0" y="0.0" height="217.0" width="228.0" data-name="users"></rect>
+							<path d="M119.0 31.0 L347.0 31.0" fill="none" data-name="users"></path>
+							<path d="M119.0 62.0 L347.0 62.0" fill="none" data-name="users"></path>
+							<path d="M119.0 93.0 L347.0 93.0" fill="none" data-name="users"></path>
+							<path d="M119.0 124.0 L347.0 124.0" fill="none" data-name="users"></path>
+							<path d="M119.0 155.0 L347.0 155.0" fill="none" data-name="users"></path>
+							<path d="M119.0 186.0 L347.0 186.0" fill="none" data-name="users"></path>
+						</g>
+						<g transform="translate(119, 0)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="users">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="users">
+								<text x="106.0" y="13.5" stroke="none" text-anchor="middle" data-name="users">users</text>
+								
+							</g>
+						</g>
+						<g transform="translate(119, 31)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="users">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="users">
+								<text x="0.0" y="13.5" stroke="none" data-name="users">id: BIGSERIAL</text>
+								
+							</g>
+						</g>
+						<g transform="translate(119, 62)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="users">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="users">
+								<text x="0.0" y="13.5" stroke="none" data-name="users">email: VARCHAR(250)</text>
+								
+							</g>
+						</g>
+						<g transform="translate(119, 93)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="users">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="users">
+								<text x="0.0" y="13.5" stroke="none" data-name="users">username: VARCHAR(250)</text>
+								
+							</g>
+						</g>
+						<g transform="translate(119, 124)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="users">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="users">
+								<text x="0.0" y="13.5" stroke="none" data-name="users">password: VARCHAR(500)</text>
+								
+							</g>
+						</g>
+						<g transform="translate(119, 155)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="users">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="users">
+								<text x="0.0" y="13.5" stroke="none" data-name="users">created_at: TIMESTAMP</text>
+								
+							</g>
+						</g>
+						<g transform="translate(119, 186)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="users">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="users">
+								<text x="0.0" y="13.5" stroke="none" data-name="users">updated_at: TIMESTAMP</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="tasks">
+						<g fill="#eee8d5" stroke="#33322E" data-name="tasks">
+							<rect x="0.0" y="257.0" height="217.0" width="213.0" data-name="tasks"></rect>
+							<path d="M0.0 288.0 L213.0 288.0" fill="none" data-name="tasks"></path>
+							<path d="M0.0 319.0 L213.0 319.0" fill="none" data-name="tasks"></path>
+							<path d="M0.0 350.0 L213.0 350.0" fill="none" data-name="tasks"></path>
+							<path d="M0.0 381.0 L213.0 381.0" fill="none" data-name="tasks"></path>
+							<path d="M0.0 412.0 L213.0 412.0" fill="none" data-name="tasks"></path>
+							<path d="M0.0 443.0 L213.0 443.0" fill="none" data-name="tasks"></path>
+						</g>
+						<g transform="translate(0, 257)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="tasks">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="tasks">
+								<text x="98.5" y="13.5" stroke="none" text-anchor="middle" data-name="tasks">tasks</text>
+								
+							</g>
+						</g>
+						<g transform="translate(0, 288)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="tasks">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="tasks">
+								<text x="0.0" y="13.5" stroke="none" data-name="tasks">id: BIGSERIAL</text>
+								
+							</g>
+						</g>
+						<g transform="translate(0, 319)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="tasks">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="tasks">
+								<text x="0.0" y="13.5" stroke="none" data-name="tasks">user_id: BIGINT</text>
+								
+							</g>
+						</g>
+						<g transform="translate(0, 350)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="tasks">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="tasks">
+								<text x="0.0" y="13.5" stroke="none" data-name="tasks">title: VARCHAR(250)</text>
+								
+							</g>
+						</g>
+						<g transform="translate(0, 381)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="tasks">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="tasks">
+								<text x="0.0" y="13.5" stroke="none" data-name="tasks">description: TEXT</text>
+								
+							</g>
+						</g>
+						<g transform="translate(0, 412)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="tasks">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="tasks">
+								<text x="0.0" y="13.5" stroke="none" data-name="tasks">created_at: TIMESTAMP</text>
+								
+							</g>
+						</g>
+						<g transform="translate(0, 443)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="tasks">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="tasks">
+								<text x="0.0" y="13.5" stroke="none" data-name="tasks">updated_at: TIMESTAMP</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="refresh_tokens">
+						<g fill="#eee8d5" stroke="#33322E" data-name="refresh_tokens">
+							<rect x="253.0" y="257.0" height="217.0" width="213.0" data-name="refresh_tokens"></rect>
+							<path d="M253.0 288.0 L466.0 288.0" fill="none" data-name="refresh_tokens"></path>
+							<path d="M253.0 319.0 L466.0 319.0" fill="none" data-name="refresh_tokens"></path>
+							<path d="M253.0 350.0 L466.0 350.0" fill="none" data-name="refresh_tokens"></path>
+							<path d="M253.0 381.0 L466.0 381.0" fill="none" data-name="refresh_tokens"></path>
+							<path d="M253.0 412.0 L466.0 412.0" fill="none" data-name="refresh_tokens"></path>
+							<path d="M253.0 443.0 L466.0 443.0" fill="none" data-name="refresh_tokens"></path>
+						</g>
+						<g transform="translate(253, 257)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="refresh_tokens">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="refresh_tokens">
+								<text x="98.5" y="13.5" stroke="none" text-anchor="middle" data-name="refresh_tokens">refresh_tokens</text>
+								
+							</g>
+						</g>
+						<g transform="translate(253, 288)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="refresh_tokens">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="refresh_tokens">
+								<text x="0.0" y="13.5" stroke="none" data-name="refresh_tokens">id: SERIAL</text>
+								
+							</g>
+						</g>
+						<g transform="translate(253, 319)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="refresh_tokens">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="refresh_tokens">
+								<text x="0.0" y="13.5" stroke="none" data-name="refresh_tokens">user_id: BIGINT</text>
+								
+							</g>
+						</g>
+						<g transform="translate(253, 350)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="refresh_tokens">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="refresh_tokens">
+								<text x="0.0" y="13.5" stroke="none" data-name="refresh_tokens">refresh_token: TEXT</text>
+								
+							</g>
+						</g>
+						<g transform="translate(253, 381)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="refresh_tokens">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="refresh_tokens">
+								<text x="0.0" y="13.5" stroke="none" data-name="refresh_tokens">expired_at: TIMESTAMP</text>
+								
+							</g>
+						</g>
+						<g transform="translate(253, 412)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="refresh_tokens">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="refresh_tokens">
+								<text x="0.0" y="13.5" stroke="none" data-name="refresh_tokens">created_at: TIMESTAMP</text>
+								
+							</g>
+						</g>
+						<g transform="translate(253, 443)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="refresh_tokens">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="refresh_tokens">
+								<text x="0.0" y="13.5" stroke="none" data-name="refresh_tokens">updated_at: TIMESTAMP</text>
+								
+							</g>
+						</g>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</svg>
