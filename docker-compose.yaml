@@ -35,7 +35,7 @@ services:
     command:
       [
         "-path",
-        "app/migrations",
+        "/app/migrations",
         "-database",
         "postgres://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_DATABASE}?sslmode=disable",
         "-verbose",
