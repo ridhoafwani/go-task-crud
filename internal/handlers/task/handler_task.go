@@ -7,6 +7,7 @@ package handler
 // @BasePath /api/v1
 
 import (
+	"task-crud/internal/middleware"
 	services "task-crud/internal/services/task"
 
 	"github.com/gin-gonic/gin"
@@ -26,6 +27,8 @@ func NewTaskHandler(api *gin.Engine, s services.TaskService) *TaskHandler {
 
 func (h *TaskHandler) RegisterRoute() {
 	router := h.Group("api/v1/tasks")
+
+	router.Use(middleware.AuthMiddleware())
 
 	router.POST("/", h.CreateTask)
 	router.GET("/", h.GetAllTasks)

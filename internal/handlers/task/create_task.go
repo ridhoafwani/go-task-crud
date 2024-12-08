@@ -2,7 +2,7 @@ package handler
 
 import (
 	"net/http"
-	models "task-crud/internal/models/task"
+	models "task-crud/internal/models"
 
 	"github.com/gin-gonic/gin"
 )
@@ -15,7 +15,9 @@ import (
 // @Param task body models.CreateTaskRequest true "Create task request"
 // @Success 201 {object} models.Task
 // @Failure 400 {object} models.ErrorResponse
+// @Failure 401 {object} models.ErrorResponse
 // @Failure 500 {object} models.ErrorResponse
+// @Security BearerAuth
 // @Router /tasks [post]
 func (h *TaskHandler) CreateTask(c *gin.Context) {
 	var req models.CreateTaskRequest
@@ -26,7 +28,8 @@ func (h *TaskHandler) CreateTask(c *gin.Context) {
 		return
 	}
 
-	task, err := h.taskService.CreateTask(req)
+	userID := c.GetInt64("userID")
+	task, err := h.taskService.CreateTask(c, userID, req)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": err.Error(),

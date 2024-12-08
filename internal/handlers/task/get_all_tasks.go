@@ -16,7 +16,9 @@ import (
 // @Param offset query int false "Offset" default(0)
 // @Success 200 {object} models.GetAllTaskResponse
 // @Failure 400 {object} models.ErrorResponse
+// @Failure 401 {object} models.ErrorResponse
 // @Failure 500 {object} models.ErrorResponse
+// @Security BearerAuth
 // @Router /tasks [get]
 func (h *TaskHandler) GetAllTasks(c *gin.Context) {
 	limitStr := c.DefaultQuery("limit", "10")
@@ -34,7 +36,8 @@ func (h *TaskHandler) GetAllTasks(c *gin.Context) {
 		return
 	}
 
-	response, err := h.taskService.GetAllTasks(limit, offset)
+	userID := c.GetInt64("userID")
+	response, err := h.taskService.GetAllTasks(c, userID, limit, offset)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return

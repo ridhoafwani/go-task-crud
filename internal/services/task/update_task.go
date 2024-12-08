@@ -1,17 +1,20 @@
 package services
 
-import models "task-crud/internal/models/task"
+import (
+	"context"
+	models "task-crud/internal/models"
+)
 
-func (s *Service) UpdateTask(id int, req models.CreateTaskRequest) (models.Task, error) {
-	task := models.Task{
-		Title:       req.Title,
-		Description: req.Description,
-	}
+func (s *taskService) UpdateTask(ctx context.Context, userID, id int64, req models.UpdateTaskRequest) (models.Task, error) {
 
-	updatedTask, err := s.taskRepository.Update(id, task)
+	existingTask, err := s.GetTaskByID(ctx, userID, id)
 	if err != nil {
-		return models.Task{}, err
+		return existingTask, err
 	}
 
-	return updatedTask, nil
+	existingTask.Title = req.Title
+	existingTask.Description = req.Description
+
+	return s.taskRepository.Update(ctx, id, existingTask)
+
 }

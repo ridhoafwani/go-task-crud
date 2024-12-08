@@ -1,13 +1,22 @@
 package repositories
 
-import models "task-crud/internal/models/task"
+import (
+	"context"
+	"fmt"
+	models "task-crud/internal/models"
+)
 
-func (repo *InMemoryTaskRepository) Create(task models.Task) (models.Task, error) {
-	repo.mutex.Lock()
-	defer repo.mutex.Unlock()
+func (repo *taskRepository) Create(ctx context.Context, userID int64, task models.Task) (models.Task, error) {
+	query := `
+        INSERT INTO tasks (title, description, user_id, created_at, updated_at)
+        VALUES ($1, $2, $3, NOW(), NOW()) 
+        RETURNING id, user_id, created_at, updated_at`
 
-	task.ID = repo.nextID
-	repo.tasks[repo.nextID] = task
-	repo.nextID++
+	err := repo.db.QueryRowContext(ctx, query, task.Title, task.Description, userID).Scan(&task.ID, &task.UserID, &task.CreatedAt, &task.UpdatedAt)
+
+	if err != nil {
+		return task, fmt.Errorf("failed to create task: %w", err)
+	}
+
 	return task, nil
 }

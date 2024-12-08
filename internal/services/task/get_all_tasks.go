@@ -1,27 +1,18 @@
 package services
 
-import models "task-crud/internal/models/task"
+import (
+	"context"
+	models "task-crud/internal/models"
+)
 
-func (s *Service) GetAllTasks(limit, offset int) (models.GetAllTaskResponse, error) {
-	tasks, err := s.taskRepository.GetAll()
+func (s *taskService) GetAllTasks(ctx context.Context, userID int64, limit, offset int) (models.GetAllTaskResponse, error) {
+	tasks, err := s.taskRepository.GetAll(ctx, userID, limit, offset)
 	if err != nil {
 		return models.GetAllTaskResponse{}, err
 	}
 
-	start := offset
-	end := offset + limit
-
-	if start > len(tasks) {
-		start = len(tasks)
-	}
-	if end > len(tasks) {
-		end = len(tasks)
-	}
-
-	paginatedTasks := tasks[start:end]
-
 	response := models.GetAllTaskResponse{
-		Data: paginatedTasks,
+		Data: tasks,
 		Pagination: models.Pagination{
 			Limit:  limit,
 			Offset: offset,

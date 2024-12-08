@@ -1,17 +1,24 @@
 package repositories
 
 import (
-	"errors"
-	models "task-crud/internal/models/task"
+	"context"
+	"database/sql"
+	"fmt"
+	models "task-crud/internal/models"
+	"task-crud/utils/custom_err"
 )
 
-func (repo *InMemoryTaskRepository) GetByID(id int) (models.Task, error) {
-	repo.mutex.RLock()
-	defer repo.mutex.RUnlock()
+func (repo *taskRepository) GetByID(ctx context.Context, id int64) (models.Task, error) {
+	query := "SELECT id, title, description, user_id, created_at, updated_at FROM tasks WHERE id = $1"
 
-	task, exists := repo.tasks[id]
-	if !exists {
-		return models.Task{}, errors.New("task not found")
+	var task models.Task
+	err := repo.db.QueryRowContext(ctx, query, id).Scan(&task.ID, &task.Title, &task.Description, &task.UserID, &task.CreatedAt, &task.UpdatedAt)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return task, custom_err.ErrNotFound
+		}
+		return task, fmt.Errorf("failed to get task: %w", err)
 	}
+
 	return task, nil
 }

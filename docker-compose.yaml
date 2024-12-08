@@ -1,0 +1,76 @@
+services:
+  db:
+    image: postgres:latest
+    networks:
+      - my-local-net
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "${DB_USER}", "-d", "${DB_DATABASE}"]
+      interval: 2s
+      timeout: 10s
+      retries: 5
+
+  migrate:
+    image: migrate/migrate
+    environment:
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: db
+      DB_PORT: ${DB_PORT}
+      DB_DATABASE: ${DB_DATABASE}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - my-local-net
+    volumes:
+      - ./scripts/migrations/:/scripts/migrations/
+    command:
+      [
+        "-path",
+        "scripts/migrations",
+        "-database",
+        "postgres://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_DATABASE}?sslmode=disable",
+        "-verbose",
+        "up",
+      ]
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - my-local-net
+    environment:
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: db
+      DB_PORT: ${DB_PORT}
+      DB_DATABASE: ${DB_DATABASE}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+      APP_ENV: ${APP_ENV}
+      PORT: ${PORT}
+      DB_SCHEMA: ${DB_SCHEMA}
+    ports:
+      - "${PORT}:${PORT}"
+    depends_on:
+      db:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+    command: ["sh", "-c", "sleep 10 && ./app/main"]
+
+volumes:
+  db_data:
+
+networks:
+  my-local-net:
+    name: my-net
+    driver: bridge
