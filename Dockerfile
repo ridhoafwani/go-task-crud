@@ -11,7 +11,6 @@ RUN go mod tidy
 
 # Copy the source code into the container
 COPY . .
-COPY .env .
 
 # Build the Go app
 RUN go build -o main cmd/main.go
