@@ -7,9 +7,8 @@ services:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_DATABASE}
-      PORT: 5432
     ports:
-      - "${DB_PORT}"
+      - "${DB_PORT}:${DB_PORT}"
     volumes:
       - db_data:/var/lib/postgresql/data
     healthcheck:
@@ -19,26 +18,24 @@ services:
       retries: 5
 
   migrate:
-    build:
-      context: .
-      dockerfile: Dockerfile.migrate
+    image: migrate/migrate
     environment:
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
       DB_HOST: db
       DB_PORT: ${DB_PORT}
       DB_DATABASE: ${DB_DATABASE}
-      PORT: 3100
-    restart: "no"
     depends_on:
       db:
         condition: service_healthy
     networks:
       - my-local-net
+    volumes:
+      - ./scripts/migrations/:/scripts/migrations/
     command:
       [
         "-path",
-        "/app/migrations",
+        "/scripts/migrations",
         "-database",
         "postgres://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_DATABASE}?sslmode=disable",
         "-verbose",
@@ -62,7 +59,7 @@ services:
       PORT: ${PORT}
       DB_SCHEMA: ${DB_SCHEMA}
     ports:
-      - "${PORT}"
+      - "${PORT}:${PORT}"
     depends_on:
       db:
         condition: service_healthy
