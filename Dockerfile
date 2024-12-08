@@ -23,6 +23,4 @@ RUN apk --no-cache add bash
 
 COPY --from=builder /app/main /app/main
 
-EXPOSE 3000
-
 CMD ["/app/main"]

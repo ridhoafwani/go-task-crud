@@ -7,6 +7,7 @@ services:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_DATABASE}
+      PORT: 5432
     ports:
       - "${DB_PORT}"
     volumes:
@@ -27,6 +28,7 @@ services:
       DB_HOST: db
       DB_PORT: ${DB_PORT}
       DB_DATABASE: ${DB_DATABASE}
+      PORT: 3100
     restart: "no"
     depends_on:
       db:
